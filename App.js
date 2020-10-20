@@ -1,21 +1,47 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Button, Vibration } from 'react-native';
+import Instructions from './components/introscreen.js';
+import LongPressButton from './components/test.js';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayInstructions: true,
+      runTest: false
+    };
+  }
+
+  makeDisplayFalse = () => {
+    this.setState({
+      displayInstructions: false,
+      runTest: true
+    });
+    Vibration.vibrate(angry, true);
+  };
+
+  render() {
+    return (
+      <View>
+          <Instructions 
+            display={this.state.displayInstructions}
+            makeDisplayFalse={this.makeDisplayFalse} />
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//numbers are the time in ms between the vibrations, in order
+//on ios vibrations are fixed length, always 400ms
+const happy = [100,100,100,100,100]
+const sad = [2000,2000,2000]
+const angry = [1000,800,600,400,200,100,50,5000]
+const love = [500,500,500,500]
+const laugh = [1,1,1,1,1]
+const like = [10,10,10,2000,10,10,10,2000,2000]
+
+
+
