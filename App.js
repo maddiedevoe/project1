@@ -1,9 +1,8 @@
-import 'react-native-gesture-handler';
+
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, Button, Vibration } from 'react-native';
 import Instructions from './components/introscreen.js';
-import LongPressButton from './components/test.js';
 
 export default class App extends React.Component {
 
