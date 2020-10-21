@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native';
 
-class Test extends React.Component {
+class Tutorial extends React.Component {
     render() {
         const angry = require('../images/angry.jpeg');
         const sad = require('../images/sad.jpeg');
@@ -14,9 +14,9 @@ class Test extends React.Component {
         if (this.props.display) {
             return(
                 <View style={styles.cont}>
-                    <Text>running test...</Text>
+                    <Image source={eval(this.props.emoji)} />
                 </View>
-            );
+                );
         }
         else {return(<View></View>)}
     };
@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default Test;
-
+export default Tutorial;
 
 
 

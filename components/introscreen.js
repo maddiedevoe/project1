@@ -7,13 +7,11 @@ class Instructions extends React.Component {
     if (this.props.display) {
         return(
             <View>
-                <Text style = {styles.text}>
-                    When you press start, <Text style={styles.bold}>close your eyes.</Text> A series of vibrations will be sent to you, 
-                    and you will have 5 seconds to respond with a touch-screen gesture after each one.{"\n\n"}          
-                    Tap the screen in the same pattern as the vibrations to empathize with your mystery messenger.
-                </Text>
-                <TouchableOpacity style={styles.btn} onPress={this.props.makeDisplayFalse}>
-                    <Text style={styles.btnText}>Start</Text>
+                <TouchableOpacity style={styles.btn} onPress={this.props.runTutorial}>
+                    <Text style={styles.btnText}>Run Tutorial</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={this.props.runTest}>
+                    <Text style={styles.btnText}>Run Test</Text>
                 </TouchableOpacity>
             </View>
             );
@@ -23,14 +21,9 @@ class Instructions extends React.Component {
 };
 
 const styles = StyleSheet.create({
-    text: {
-        fontSize:20,
-        lineHeight:20,
-        padding: 40,
-        alignItems: 'center',
-    },
     btn: {
-        alignItems: 'center'
+        alignItems: 'center',
+        margin:20
     },
     btnText: {
         fontSize: 30,
