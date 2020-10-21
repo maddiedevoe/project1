@@ -5,11 +5,13 @@ import {TouchableOpacity, StyleSheet, Text, View, Button, Vibration } from 'reac
 import Instructions from './components/introscreen.js';
 import Tutorial from './components/tutorial.js';
 import Test from './components/test.js';
+import {patternDict, emojinames, randomEmoji} from './sharedVars.js';
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.testElement = React.createRef();
     this.state = {
       displayInstructions: true,
       displayTest: false,
@@ -24,7 +26,7 @@ export default class App extends React.Component {
       <View>
           <Instructions display={this.state.displayInstructions} runTutorial={this.runTutorial}  runTest={this.runTest}/>
           <Tutorial display={this.state.displayTutorial} emoji={this.state.tutorialEmoji} />
-          <Test display={this.state.displayTest}/>
+          <Test ref={this.testElement} display={this.state.displayTest} testType={this.state.recieveType} exit={this.exitToIntroscreen}/>
       </View>
     );
   };
@@ -32,7 +34,7 @@ export default class App extends React.Component {
 
   delay = ms => new Promise(res => setTimeout(res, ms));
 
-  runTutorial = async () => {
+  runTutorial = async (type) => {
     this.setState({
       displayInstructions: false,
       displayTutorial: true
@@ -47,35 +49,34 @@ export default class App extends React.Component {
       this.setState({
         tutorialEmoji: name
       })
-      Vibration.vibrate(pattern=eval(name+'1'));
-      await this.delay(5000);
+      Vibration.vibrate(eval(patternDict[name+type]));
+      await this.delay(7000);
     }
     this.setState({
       displayInstructions: true,
       displayTutorial: false
     });
-    
   };
 
-  runTest = async () => {
+  runTest = async (type) => {
     this.setState({
       displayInstructions: false,
-      displayTest: true
+      displayTest: true,
+      recieveType: type
+    });
+    this.testElement.current.sendVibration(randomEmoji())
+  }
+
+  exitToIntroscreen = async () => {
+    this.setState({
+      displayInstructions: true,
+      displayTest: false
     });
   }
 }
 
 
-const emojinames = ['happy','angry','sad','love','laugh','like'];
 
-//numbers are the time in ms between the vibrations, in order
-//on ios vibrations are fixed length, always 400ms
-const happy1 = [100,100,100,100]
-const sad1 = [1000,1000]
-const angry1 = [500,500,500,500,500]
-const love1 = [10,10,10]
-const laugh1 = [1,1,1,1,1,1,1,1]
-const like1 = [10]
 
 
 

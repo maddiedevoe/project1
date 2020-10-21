@@ -7,12 +7,21 @@ class Instructions extends React.Component {
     if (this.props.display) {
         return(
             <View>
-                <TouchableOpacity style={styles.btn} onPress={this.props.runTutorial}>
-                    <Text style={styles.btnText}>Run Tutorial</Text>
+                <Text style={{marginTop:40, paddingLeft:40, fontWeight:'bold'}}>RECIEVING:</Text>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTutorial(1)}>
+                    <Text style={styles.btnText}>Run Tutorial 1</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={this.props.runTest}>
-                    <Text style={styles.btnText}>Run Test</Text>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTest(1)}>
+                    <Text style={styles.btnText}>Run Test 1</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTutorial(2)}>
+                    <Text style={styles.btnText}>Run Tutorial 2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTest(2)}>
+                    <Text style={styles.btnText}>Run Test 2</Text>
+                </TouchableOpacity>
+                <View style={{borderBottomWidth:3}}></View>
+                <Text style={{marginTop:40, paddingLeft:40, fontWeight:'bold'}}>SENDING:</Text>
             </View>
             );
         }
@@ -23,10 +32,14 @@ class Instructions extends React.Component {
 const styles = StyleSheet.create({
     btn: {
         alignItems: 'center',
-        margin:20
+        margin:10,
+        padding:5,
+        borderWidth: 1,
+        backgroundColor: '#d3d3d3',
+        borderRadius: 5
     },
     btnText: {
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold'
     },
     bold: {
