@@ -1,12 +1,13 @@
 export const emojinames = ['happy','angry','sad','love','laugh','like'];
 
+//returns a random element of emoji names
 export const randomEmoji = () => {
     return emojinames[Math.floor(Math.random() * Math.floor(6))];
 }
+
 //numbers are the time in ms between the vibrations, in order
 //on ios vibrations are fixed length, always 400ms
 //function kinda starts getting wierd when the separation times are low (<500)
-
 //ENCODING 1
 const happy1 = [600]
 const sad1 = [600,600]
@@ -38,6 +39,7 @@ export const patternDict = {
     "love2": love2
 }
 
+//emoji images
 const angryimg = require('./images/angry.jpeg');
 const sadimg = require('./images/sad.jpeg');
 const happyimg = require('./images/happy.jpeg');

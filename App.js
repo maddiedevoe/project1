@@ -20,7 +20,7 @@ export default class App extends React.Component {
     };
   };   
 
-
+  
   render() {
     return (
       <View>
@@ -31,9 +31,10 @@ export default class App extends React.Component {
     );
   };
 
-
+  //utility function that allows async await a certain number of ms functionality
   delay = ms => new Promise(res => setTimeout(res, ms));
 
+  //runs the tutorial by changing state.tutorialEmoji to each emoji in turn and sending the corresponding vibration
   runTutorial = async (type) => {
     this.setState({
       displayInstructions: false,
@@ -58,6 +59,8 @@ export default class App extends React.Component {
     });
   };
 
+  //passed to introscreen component and called when a run test button is pressed to display the test screen 
+  //and send the first vibration
   runTest = async (type) => {
     this.setState({
       displayInstructions: false,
@@ -67,6 +70,7 @@ export default class App extends React.Component {
     this.testElement.current.sendVibration(randomEmoji())
   }
 
+  //passed to test component and called when the test is completed to revert back to introscreen component
   exitToIntroscreen = async () => {
     this.setState({
       displayInstructions: true,

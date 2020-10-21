@@ -3,10 +3,6 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, Image, Vibration } from 'react-native';
 import {emojinames, imageDict, patternDict, randomEmoji } from '../sharedVars.js';
 
-//have 6 buttons
-//call sendVibration that plays a vibration randomly and sets correctEmoji to whichever one is played
-//Then when the user selects a button, checkSelection(emoji) is called, which sees if its correct, and either
-//records numTries, resets it to 0, and calls sendVibration
 class Test extends React.Component {
     constructor(props) {
       super(props);
@@ -20,7 +16,6 @@ class Test extends React.Component {
     };  
 
     render() {
-        //if (this.props.display && this.state.trials == 0) {this.sendVibration(randomEmoji);};
         if (this.props.display) {
             return(
               <View>
@@ -37,7 +32,8 @@ class Test extends React.Component {
     };
 
 
-    //prepares state for next trial, and send vibration
+    //prepares state for next trial, and sends vibration of emoji argument
+    //unless max number of trials has been reached, then displays the results and exits to introscreen
     sendVibration = (emoji) => {
       if (this.state.trials < 5) {
         this.setState({
@@ -46,7 +42,7 @@ class Test extends React.Component {
           text: 'sending vibration... (trial ' + (this.state.trials+1) + ')',
           trials: this.state.trials + 1
         });
-        console.log(eval(patternDict[emoji+this.props.testType]));
+        //console.log(eval(patternDict[emoji+this.props.testType]));
         Vibration.vibrate(eval(patternDict[emoji+this.props.testType]));
       }
       else {
@@ -61,7 +57,9 @@ class Test extends React.Component {
     }
 
     //called on press of one of the emojis, checks if it is correct 
-    //if it is correct, calls sendVibration, if it isn't adjusts state and waits for another guess
+    //if it is correct, records the trial in state.data, 
+    //and initiates next trial by calling sendVibration
+    //if it isn't, increments numTries and waits for next attempt
     checkCorrect = (emoji) => {
       //console.log('correct: ' + this.state.correctEmoji);
       if (emoji == this.state.correctEmoji) {
