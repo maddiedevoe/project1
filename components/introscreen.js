@@ -22,7 +22,18 @@ class Instructions extends React.Component {
                 </TouchableOpacity>
                 <View style={{borderBottomWidth:3}}></View>
                 <Text style={{marginTop:40, paddingLeft:40, fontWeight:'bold'}}>SENDING:</Text>
-            </View>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTutorial(1)}>
+                    <Text style={styles.btnText}>Run Tutorial 1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTest(1)}>
+                    <Text style={styles.btnText}>Run Test 1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTutorial(2)}>
+                    <Text style={styles.btnText}>Run Tutorial 2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => this.props.runTest(2)}>
+                    <Text style={styles.btnText}>Run Test 2</Text>
+                </TouchableOpacity>
             );
         }
     else {return(<View></View>)}
